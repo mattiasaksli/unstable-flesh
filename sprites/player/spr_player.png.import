@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spr_t_flesh.png-ccdbd2381dffa11ff58c5b520aeffec7.stex"
+path="res://.import/spr_player.png-5a8a0dd67c63d08652a3cb7ffacd71fe.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/tileset/spr_t_flesh.png"
-dest_files=[ "res://.import/spr_t_flesh.png-ccdbd2381dffa11ff58c5b520aeffec7.stex" ]
+source_file="res://sprites/player/spr_player.png"
+dest_files=[ "res://.import/spr_player.png-5a8a0dd67c63d08652a3cb7ffacd71fe.stex" ]
 
 [params]
 

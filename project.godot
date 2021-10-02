@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://scripts/State.gd"
+} ]
+_global_script_class_icons={
+"State": ""
+}
+
 [application]
 
 config/name="Unstable"
@@ -20,10 +30,11 @@ gdscript/warnings/unused_class_variable=true
 
 [display]
 
-window/size/width=640
-window/size/height=480
-window/size/resizable=false
+window/size/width=120
+window/size/height=90
 window/vsync/use_vsync=false
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [physics]
 
