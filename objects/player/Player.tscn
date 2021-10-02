@@ -11,7 +11,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3, 4.45333 )
 
-[sub_resource type="Animation" id=31]
+[sub_resource type="Animation" id=2]
 resource_name = "Backflip"
 length = 0.6
 tracks/0/type = "value"
@@ -27,7 +27,7 @@ tracks/0/keys = {
 "values": [ 11, 12, 4 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "Crouch"
 length = 0.15
 tracks/0/type = "value"
@@ -43,8 +43,7 @@ tracks/0/keys = {
 "values": [ 1 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Idle"
+[sub_resource type="Animation" id=4]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -59,7 +58,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=5]
 resource_name = "Jump Down"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -89,8 +88,7 @@ tracks/0/keys = {
 "values": [ 3 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Jump Up"
+[sub_resource type="Animation" id=7]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -105,7 +103,7 @@ tracks/0/keys = {
 "values": [ 2 ]
 }
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=8]
 resource_name = "Ledge"
 length = 0.1
 tracks/0/type = "value"
@@ -121,8 +119,7 @@ tracks/0/keys = {
 "values": [ 5 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Run"
+[sub_resource type="Animation" id=9]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -138,7 +135,7 @@ tracks/0/keys = {
 "values": [ 6, 9 ]
 }
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=10]
 resource_name = "Turn"
 length = 0.1
 tracks/0/type = "value"
@@ -154,91 +151,91 @@ tracks/0/keys = {
 "values": [ 10 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=32]
+[sub_resource type="AnimationNodeAnimation" id=11]
 animation = "Backflip"
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "Crouch"
 
-[sub_resource type="AnimationNodeAnimation" id=9]
+[sub_resource type="AnimationNodeAnimation" id=13]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeAnimation" id=10]
+[sub_resource type="AnimationNodeAnimation" id=14]
 animation = "Jump Down"
 
-[sub_resource type="AnimationNodeAnimation" id=11]
+[sub_resource type="AnimationNodeAnimation" id=15]
 animation = "Jump Mid"
 
-[sub_resource type="AnimationNodeAnimation" id=12]
+[sub_resource type="AnimationNodeAnimation" id=16]
 animation = "Jump Up"
 
-[sub_resource type="AnimationNodeAnimation" id=24]
+[sub_resource type="AnimationNodeAnimation" id=17]
 animation = "Ledge"
 
-[sub_resource type="AnimationNodeAnimation" id=13]
+[sub_resource type="AnimationNodeAnimation" id=18]
 animation = "Run"
 
-[sub_resource type="AnimationNodeAnimation" id=28]
+[sub_resource type="AnimationNodeAnimation" id=19]
 animation = "Turn"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=14]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=15]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=16]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=17]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=18]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=20]
-switch_mode = 2
-auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=25]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=26]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=29]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=30]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
 
-[sub_resource type="AnimationNodeStateMachine" id=21]
-states/Backflip/node = SubResource( 32 )
+[sub_resource type="AnimationNodeStateMachine" id=35]
+states/Backflip/node = SubResource( 11 )
 states/Backflip/position = Vector2( 942, -82 )
-states/Crouch/node = SubResource( 8 )
+states/Crouch/node = SubResource( 12 )
 states/Crouch/position = Vector2( 947, 161 )
-states/Idle/node = SubResource( 9 )
+states/Idle/node = SubResource( 13 )
 states/Idle/position = Vector2( 680, 161 )
-"states/Jump Down/node" = SubResource( 10 )
+"states/Jump Down/node" = SubResource( 14 )
 "states/Jump Down/position" = Vector2( 845, 18 )
-"states/Jump Mid/node" = SubResource( 11 )
+"states/Jump Mid/node" = SubResource( 15 )
 "states/Jump Mid/position" = Vector2( 662, -15 )
-"states/Jump Up/node" = SubResource( 12 )
+"states/Jump Up/node" = SubResource( 16 )
 "states/Jump Up/position" = Vector2( 680, 67 )
-states/Ledge/node = SubResource( 24 )
+states/Ledge/node = SubResource( 17 )
 states/Ledge/position = Vector2( 1042, 54 )
-states/Run/node = SubResource( 13 )
+states/Run/node = SubResource( 18 )
 states/Run/position = Vector2( 352, 134 )
-states/Turn/node = SubResource( 28 )
+states/Turn/node = SubResource( 19 )
 states/Turn/position = Vector2( 352, -82 )
-transitions = [ "Idle", "Run", SubResource( 14 ), "Run", "Idle", SubResource( 15 ), "Idle", "Jump Up", SubResource( 16 ), "Jump Up", "Jump Mid", SubResource( 17 ), "Jump Mid", "Jump Down", SubResource( 18 ), "Jump Down", "Crouch", SubResource( 19 ), "Crouch", "Idle", SubResource( 20 ), "Jump Down", "Ledge", SubResource( 25 ), "Ledge", "Jump Down", SubResource( 26 ), "Turn", "Run", SubResource( 29 ), "Run", "Turn", SubResource( 30 ), "Turn", "Backflip", SubResource( 33 ), "Backflip", "Jump Down", SubResource( 34 ), "Backflip", "Crouch", SubResource( 35 ), "Backflip", "Ledge", SubResource( 36 ) ]
+transitions = [ "Idle", "Run", SubResource( 20 ), "Run", "Idle", SubResource( 21 ), "Idle", "Jump Up", SubResource( 22 ), "Jump Up", "Jump Mid", SubResource( 23 ), "Jump Mid", "Jump Down", SubResource( 24 ), "Jump Down", "Crouch", SubResource( 25 ), "Crouch", "Idle", SubResource( 26 ), "Jump Down", "Ledge", SubResource( 27 ), "Ledge", "Jump Down", SubResource( 28 ), "Turn", "Run", SubResource( 29 ), "Run", "Turn", SubResource( 30 ), "Turn", "Backflip", SubResource( 31 ), "Backflip", "Jump Down", SubResource( 32 ), "Backflip", "Crouch", SubResource( 33 ), "Backflip", "Ledge", SubResource( 34 ) ]
 start_node = "Idle"
 graph_offset = Vector2( 110, -116 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=22]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=36]
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 4 )
@@ -253,7 +250,6 @@ position = Vector2( 0, -6 )
 z_index = -1
 texture = ExtResource( 1 )
 hframes = 13
-frame = 4
 
 [node name="States" type="Node2D" parent="."]
 visible = false
@@ -287,18 +283,18 @@ script = ExtResource( 7 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 method_call_mode = 1
-anims/Backflip = SubResource( 31 )
-anims/Crouch = SubResource( 4 )
-anims/Idle = SubResource( 2 )
-"anims/Jump Down" = SubResource( 7 )
+anims/Backflip = SubResource( 2 )
+anims/Crouch = SubResource( 3 )
+anims/Idle = SubResource( 4 )
+"anims/Jump Down" = SubResource( 5 )
 "anims/Jump Mid" = SubResource( 6 )
-"anims/Jump Up" = SubResource( 5 )
-anims/Ledge = SubResource( 23 )
-anims/Run = SubResource( 3 )
-anims/Turn = SubResource( 27 )
+"anims/Jump Up" = SubResource( 7 )
+anims/Ledge = SubResource( 8 )
+anims/Run = SubResource( 9 )
+anims/Turn = SubResource( 10 )
 
 [node name="Animation" type="AnimationTree" parent="."]
-tree_root = SubResource( 21 )
+tree_root = SubResource( 35 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 22 )
+parameters/playback = SubResource( 36 )
