@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://objects/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sprites/tileset/spr_t_foreground.png" type="Texture" id=2]
+[ext_resource path="res://scenes/levels/Camera.gd" type="Script" id=3]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
@@ -85,6 +86,19 @@ tile_data = PoolIntArray( -262145, 0, 65536, -327680, 0, 65536, -327679, 0, 6553
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 48, 64 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 64, 32 )
+[node name="Camera" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="Camera"]
 current = true
+limit_left = -8
+limit_top = -40
+limit_right = 264
+limit_bottom = 88
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+drag_margin_left = 0.1
+drag_margin_top = 0.3
+drag_margin_right = 0.1
+drag_margin_bottom = 0.3
+editor_draw_drag_margin = true
