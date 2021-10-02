@@ -63,7 +63,8 @@ func activate() -> void:
 	set_physics_process(true)
 	is_active = true
 	for hazard in hazards:
-		hazard.is_active = true
+		if rng.randi_range(1, 3) != 1:
+			hazard.is_active = true
 
 func deactivate() -> void:
 	is_active = false
