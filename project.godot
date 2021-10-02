@@ -11,6 +11,7 @@ config_version=4
 [application]
 
 config/name="Unstable"
+run/main_scene="res://scenes/levels/main_level.tscn"
 config/icon="res://icon.png"
 
 [debug]
@@ -19,6 +20,8 @@ gdscript/warnings/unused_class_variable=true
 
 [display]
 
+window/size/width=640
+window/size/height=480
 window/size/resizable=false
 window/vsync/use_vsync=false
 
