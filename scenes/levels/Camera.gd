@@ -10,14 +10,10 @@ func _ready():
 	bounds.position *= 8
 	bounds.size *= 8
 	
-	
 	var leftLimit: float = bounds.position.x
 	var rightLimit: float = bounds.position.x + bounds.size.x
 	var topLimit: float = bounds.position.y
 	var bottomLimit: float = bounds.position.y + bounds.size.y
-	
-	print(leftLimit, ' ', rightLimit)
-	print(topLimit, ' ', bottomLimit)
 	
 	camera.limit_left = leftLimit
 	camera.limit_right = rightLimit

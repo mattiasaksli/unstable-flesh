@@ -5,9 +5,17 @@ onready var player = get_parent().get_parent()
 const GROUND_ACCELERATION: float = 200.0
 const JUMP_FORCE: float = 110.0
 
+var movement_time: float = 0.0
+
 func run(delta):
 	var input_x: float = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	var input_jump: bool = Input.is_action_just_pressed("ui_up")
+	
+	if input_x != 0:
+		movement_time += delta * 10
+	else: 
+		movement_time *= 0.8
+	
 	
 	player.motion_target.x = input_x * player.MAX_SPEED;
 	
@@ -32,9 +40,9 @@ func run(delta):
 	
 	player.animations.travel('Idle' if player.motion.x == 0 else 'Run')
 	player.is_facing_right = player.is_facing_right if input_x == 0 else (input_x > 0)
-	if abs(player.motion.x) * 1.5 >= player.MAX_SPEED && sign(player.motion.x) != sign(player.motion_target.x) && input_x != 0:
+	if abs(player.motion.x) * 1.5 > player.MAX_SPEED && sign(player.motion.x) != sign(player.motion_target.x) && movement_time > 3.0 && input_x != 0:
+		movement_time = 0
 		player.state = player.stateTurn
 		player.is_facing_right = player.motion.x > 0
-		
 	
 	player.motion = player.move_and_slide(player.motion, Vector2.UP)

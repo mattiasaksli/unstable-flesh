@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://sprites/player/spr_player.png" type="Texture" id=1]
 [ext_resource path="res://objects/player/states/Ground.gd" type="Script" id=2]
@@ -10,6 +10,22 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3, 4.45333 )
+
+[sub_resource type="Animation" id=31]
+resource_name = "Backflip"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 11, 12, 4 ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "Crouch"
@@ -138,6 +154,9 @@ tracks/0/keys = {
 "values": [ 10 ]
 }
 
+[sub_resource type="AnimationNodeAnimation" id=32]
+animation = "Backflip"
+
 [sub_resource type="AnimationNodeAnimation" id=8]
 animation = "Crouch"
 
@@ -186,25 +205,38 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=30]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+
 [sub_resource type="AnimationNodeStateMachine" id=21]
+states/Backflip/node = SubResource( 32 )
+states/Backflip/position = Vector2( 942, -82 )
 states/Crouch/node = SubResource( 8 )
-states/Crouch/position = Vector2( 920, 126 )
+states/Crouch/position = Vector2( 947, 161 )
 states/Idle/node = SubResource( 9 )
 states/Idle/position = Vector2( 680, 161 )
 "states/Jump Down/node" = SubResource( 10 )
-"states/Jump Down/position" = Vector2( 846, 49 )
+"states/Jump Down/position" = Vector2( 845, 18 )
 "states/Jump Mid/node" = SubResource( 11 )
-"states/Jump Mid/position" = Vector2( 670, 36 )
+"states/Jump Mid/position" = Vector2( 662, -15 )
 "states/Jump Up/node" = SubResource( 12 )
-"states/Jump Up/position" = Vector2( 497, 54 )
+"states/Jump Up/position" = Vector2( 680, 67 )
 states/Ledge/node = SubResource( 24 )
 states/Ledge/position = Vector2( 1042, 54 )
 states/Run/node = SubResource( 13 )
 states/Run/position = Vector2( 352, 134 )
 states/Turn/node = SubResource( 28 )
-states/Turn/position = Vector2( 257, 66 )
-transitions = [ "Idle", "Run", SubResource( 14 ), "Run", "Idle", SubResource( 15 ), "Idle", "Jump Up", SubResource( 16 ), "Jump Up", "Jump Mid", SubResource( 17 ), "Jump Mid", "Jump Down", SubResource( 18 ), "Jump Down", "Crouch", SubResource( 19 ), "Crouch", "Idle", SubResource( 20 ), "Jump Down", "Ledge", SubResource( 25 ), "Ledge", "Jump Down", SubResource( 26 ), "Turn", "Run", SubResource( 29 ), "Run", "Turn", SubResource( 30 ) ]
+states/Turn/position = Vector2( 352, -82 )
+transitions = [ "Idle", "Run", SubResource( 14 ), "Run", "Idle", SubResource( 15 ), "Idle", "Jump Up", SubResource( 16 ), "Jump Up", "Jump Mid", SubResource( 17 ), "Jump Mid", "Jump Down", SubResource( 18 ), "Jump Down", "Crouch", SubResource( 19 ), "Crouch", "Idle", SubResource( 20 ), "Jump Down", "Ledge", SubResource( 25 ), "Ledge", "Jump Down", SubResource( 26 ), "Turn", "Run", SubResource( 29 ), "Run", "Turn", SubResource( 30 ), "Turn", "Backflip", SubResource( 33 ), "Backflip", "Jump Down", SubResource( 34 ), "Backflip", "Crouch", SubResource( 35 ), "Backflip", "Ledge", SubResource( 36 ) ]
 start_node = "Idle"
+graph_offset = Vector2( 110, -116 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=22]
 
@@ -220,7 +252,8 @@ shape = SubResource( 1 )
 position = Vector2( 0, -6 )
 z_index = -1
 texture = ExtResource( 1 )
-hframes = 11
+hframes = 13
+frame = 4
 
 [node name="States" type="Node2D" parent="."]
 visible = false
@@ -254,6 +287,7 @@ script = ExtResource( 7 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 method_call_mode = 1
+anims/Backflip = SubResource( 31 )
 anims/Crouch = SubResource( 4 )
 anims/Idle = SubResource( 2 )
 "anims/Jump Down" = SubResource( 7 )

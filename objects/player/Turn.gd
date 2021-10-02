@@ -25,6 +25,9 @@ func run(delta):
 		if input_jump:
 			player.is_jumping = true
 			player.motion.y = -BACKFLIP_FORCE
+			player.motion.x = (-1.0 if player.is_facing_right else 1.0) * player.MAX_SPEED
+			player.state = player.stateBackflip
+			pass
 	else:
 		player.state = player.stateAir
 		pass

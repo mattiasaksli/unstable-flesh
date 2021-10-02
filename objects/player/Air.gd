@@ -4,7 +4,7 @@ onready var player = get_parent().get_parent()
 onready var rayRight: RayCast2D = get_node("RayRight")
 onready var rayLeft: RayCast2D = get_node("RayLeft")
 
-const AIR_ACCELERATION: float = 400.0
+const AIR_ACCELERATION: float = 200.0
 const GRAB_THRESHOLD: float = 2.0
 const VARIABLE_JUMP_FACTOR: float = .5
 const JUMP_BUFFERING_TIME: float = 2.0

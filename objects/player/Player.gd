@@ -6,6 +6,7 @@ onready var stateGround: State = get_node("States/Ground");
 onready var stateAir: State = get_node("States/Air");
 onready var stateLedge: State = get_node("States/Ledge");
 onready var stateTurn: State = get_node("States/Turn");
+onready var stateBackflip: State = get_node("States/Backflip");
 
 const MAX_SPEED: float = 48.0
 const GRAVITY: float = 300.0
