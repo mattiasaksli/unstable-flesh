@@ -19,10 +19,18 @@ func run(delta):
 	
 	player.motion.y += player.GRAVITY * delta
 	
+	# ANIMATION
+	var animation_state = 'Jump Mid'
+	if (abs(player.motion.y) > 3):
+		animation_state = 'Jump Up' if player.motion.y < 0 else 'Jump Down'
+	
+	player.animations.travel(animation_state)
+	
 	var xDiff: float = player.motion_target.x - player.motion.x
 	player.motion.x += min(abs(xDiff), AIR_ACCELERATION * delta) * sign(xDiff)
 	if player.is_on_floor():
 		player.state = player.stateGround
+		player.animations.travel('Crouch')
 	else:
 		var ray: RayCast2D = rayRight if player.motion.x > 0 else rayLeft
 		var tilemap: TileMap = ray.get_collider()
@@ -31,9 +39,9 @@ func run(delta):
 			var tile_pos: Vector2 = tilemap.world_to_map(position)
 			
 			if tilemap.get_cell(tile_pos.x - (0 if player.motion.x > 1 else 1), tile_pos.y - 1) == -1:
-				var yDiff: float = tile_pos.y * 8 - (player.position.y - 8)
+				var yDiff: float = tile_pos.y * 8 - (player.position.y - 11)
 				if (abs(yDiff) < GRAB_THRESHOLD):
-					print(yDiff)
+					player.is_facing_right = player.motion.x > 0
 					player.position.y += yDiff
 					player.motion = Vector2.ZERO
 					player.state = player.stateLedge

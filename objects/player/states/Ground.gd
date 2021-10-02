@@ -11,6 +11,8 @@ func run(delta):
 	
 	player.motion_target.x = input_x * player.MAX_SPEED;
 	
+	player.animations.travel('Idle' if input_x == 0 else 'Run')
+	
 	# AIR FRICTION
 	var motionDiff: Vector2 = Vector2.ZERO - player.motion
 	player.motion += motionDiff.clamped(min(motionDiff.length(), player.AIR_FRICTION * delta))
@@ -19,6 +21,7 @@ func run(delta):
 	
 	var xDiff: float = player.motion_target.x - player.motion.x
 	if player.is_on_floor():
+		player.is_facing_right = player.is_facing_right if input_x == 0 else (input_x > 0)
 		player.motion.x += min(abs(xDiff), GROUND_ACCELERATION * delta) * sign(xDiff)
 		if input_jump:
 			player.motion.y = -JUMP_FORCE

@@ -16,9 +16,20 @@ var motion_target: Vector2 = Vector2.ZERO
 
 var state: State = null
 
+var is_facing_right: bool = true
+var is_jumping: bool = false
+var animations
+
 func _ready():
 	state = stateGround
+	animations = $Animation.get("parameters/playback")
 
 func _physics_process(delta):
+	_animations()
 	if state != null:
 		state.run(delta)
+		
+func _animations():
+	$Sprite.scale.x = 1 if is_facing_right else -1
+	
+	pass
