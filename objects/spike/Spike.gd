@@ -51,7 +51,7 @@ func _process(delta):
 			speed = .12
 			target_position = Vector2.DOWN
 			if is_player:
-				player.state = player.stateDeath
+				_player_died()
 			if counter < 0:
 				is_primed = false
 				is_extended = false
@@ -65,14 +65,16 @@ func _process(delta):
 		speed = .01
 		target_position = Vector2.DOWN * 8.0
 	sprite.position += (target_position - sprite.position) * speed
-	
-func _on_Spike_body_enter(body): 
-	print('entered ', body)
 
 
-func _on_Spike_body_entered(body):
+func _player_died():
+	player.state = player.stateDeath
+	($"/root/MainLevel" as GameManager).game_over()
+
+
+func _on_Spike_body_entered(_body):
 	is_player = true
 
 
-func _on_Spike_body_exited(body):
+func _on_Spike_body_exited(_body):
 	is_player = false
