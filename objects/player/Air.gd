@@ -6,6 +6,7 @@ onready var rayLeft: RayCast2D = get_node("RayLeft")
 
 const AIR_ACCELERATION: float = 400.0
 const GRAB_THRESHOLD: float = 2.0
+const VARIABLE_JUMP_FACTOR: float = .5
 
 func run(delta):
 	var input_x: float = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -18,6 +19,11 @@ func run(delta):
 	player.motion += motionDiff.clamped(min(motionDiff.length(), player.AIR_FRICTION * delta))
 	
 	player.motion.y += player.GRAVITY * delta
+	
+	var finishedJumping: bool = player.update_variable_jumping()
+	
+	if finishedJumping:
+		player.motion.y *= VARIABLE_JUMP_FACTOR
 	
 	# ANIMATION
 	var animation_state = 'Jump Mid'

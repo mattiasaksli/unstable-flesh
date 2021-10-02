@@ -31,5 +31,11 @@ func _physics_process(delta):
 		
 func _animations():
 	$Sprite.scale.x = 1 if is_facing_right else -1
-	
 	pass
+	
+func update_variable_jumping():
+	is_jumping = false if motion.y > 0 else is_jumping
+	if (not Input.is_action_pressed("ui_up")) and is_jumping:
+		is_jumping = false
+		return true;
+	return false;

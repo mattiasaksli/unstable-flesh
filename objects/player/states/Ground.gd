@@ -13,6 +13,8 @@ func run(delta):
 	
 	player.animations.travel('Idle' if input_x == 0 else 'Run')
 	
+	player.update_variable_jumping()
+	
 	# AIR FRICTION
 	var motionDiff: Vector2 = Vector2.ZERO - player.motion
 	player.motion += motionDiff.clamped(min(motionDiff.length(), player.AIR_FRICTION * delta))
@@ -24,6 +26,7 @@ func run(delta):
 		player.is_facing_right = player.is_facing_right if input_x == 0 else (input_x > 0)
 		player.motion.x += min(abs(xDiff), GROUND_ACCELERATION * delta) * sign(xDiff)
 		if input_jump:
+			player.is_jumping = true
 			player.motion.y = -JUMP_FORCE
 	else:
 		player.state = player.stateAir
