@@ -1,25 +1,19 @@
-extends StaticBody2D
+extends Area2D
+
+signal activate_flesh_tile(world_pos)
+signal deactivate_flesh_tile(world_pos)
+
+onready var flesh_manager : FleshManager = $"/root/MainLevel/Tilemap" as FleshManager
 
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	self.connect("activate_flesh_tile", flesh_manager, "on_activate_flesh_tile")
+	self.connect("deactivate_flesh_tile", flesh_manager, "on_deactivate_flesh_tile")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_tile_entered_aura(flesh_tile : Node2D) -> void:
+	emit_signal("activate_flesh_tile", flesh_tile.position)
 
 
-func _on_tile_entered_aura(tile : Tile) -> void:
-	tile.change_to_evil()
-
-
-func _on_tile_exited_aura(tile : Tile) -> void:
-	tile.change_to_normal()
+func _on_tile_exited_aura(flesh_tile : Node2D) -> void:
+	emit_signal("deactivate_flesh_tile", flesh_tile.position)

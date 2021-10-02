@@ -9,13 +9,19 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
-"class": "Tile",
+"base": "TileMap",
+"class": "FleshManager",
 "language": "GDScript",
-"path": "res://scripts/tile.gd"
+"path": "res://scripts/flesh_manager.gd"
+}, {
+"base": "StaticBody2D",
+"class": "FleshTile",
+"language": "GDScript",
+"path": "res://scripts/flesh_tile.gd"
 } ]
 _global_script_class_icons={
-"Tile": ""
+"FleshManager": "",
+"FleshTile": ""
 }
 
 [application]
@@ -33,6 +39,7 @@ gdscript/warnings/unused_class_variable=true
 window/size/width=640
 window/size/height=480
 window/size/resizable=false
+window/size/always_on_top=true
 window/vsync/use_vsync=false
 
 [layer_names]

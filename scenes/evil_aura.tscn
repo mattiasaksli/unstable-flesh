@@ -6,7 +6,6 @@
 radius = 32.0
 
 [node name="EvilAura" type="Area2D"]
-monitorable = false
 collision_layer = 4
 collision_mask = 2
 script = ExtResource( 1 )
