@@ -2,32 +2,30 @@ class_name FleshTile
 
 extends StaticBody2D
 
-const SPRITE_REGION_RECTS : Array = [
-	Vector2(8, 0),
-	Vector2(16, 0),
-	Vector2(24, 0),
-	Vector2(32, 0),
-	Vector2(0, 8),
-	Vector2(8, 8),
-]
-
 onready var sprite : Sprite = $Sprite as Sprite
 
+var rng: RandomNumberGenerator
+var is_active: bool = false
+var target_opacity: float = 0
 
 func _ready():
-	var rng : RandomNumberGenerator = RandomNumberGenerator.new()
+	rng = RandomNumberGenerator.new()
 	rng.randomize()
-	
-	sprite.region_rect.position = SPRITE_REGION_RECTS[rng.randi_range(0, 5)]
+	randomize_sprite()
+	sprite.modulate.a = 0
 
+func randomize_sprite():
+	sprite.frame = rng.randi_range(1, 5)
+	
+func _physics_process(delta):
+	target_opacity = 1.0 if is_active else 0.0
+	sprite.modulate.a += (target_opacity - sprite.modulate.a) * .09
+	if is_active:
+		pass
 
 func activate() -> void:
-	set_process(true)
-	set_physics_process(true)
-	visible = true
-
+	randomize_sprite()
+	is_active = true
 
 func deactivate() -> void:
-	set_process(false)
-	set_physics_process(false)
-	visible = false
+	is_active = false

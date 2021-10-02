@@ -5,11 +5,18 @@ signal deactivate_flesh_tile(world_pos)
 
 onready var flesh_manager : FleshManager = $"/root/MainLevel/Tilemap" as FleshManager
 
+var centerX: float = 0.0
+var time: float = 0.0
 
 func _ready():
+	centerX = position.x
 	self.connect("activate_flesh_tile", flesh_manager, "on_activate_flesh_tile")
 	self.connect("deactivate_flesh_tile", flesh_manager, "on_deactivate_flesh_tile")
 
+
+func _process(delta):
+	time += delta
+	position.x = centerX + sin(deg2rad(time * 50)) * 32.0
 
 func _on_tile_entered_aura(flesh_tile : Node2D) -> void:
 	emit_signal("activate_flesh_tile", flesh_tile.position)
