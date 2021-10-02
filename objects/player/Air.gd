@@ -7,12 +7,18 @@ onready var rayLeft: RayCast2D = get_node("RayLeft")
 const AIR_ACCELERATION: float = 400.0
 const GRAB_THRESHOLD: float = 2.0
 const VARIABLE_JUMP_FACTOR: float = .5
+const JUMP_BUFFERING_TIME: float = 2.0
 
 func run(delta):
 	var input_x: float = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	var input_y: int = int(Input.is_action_pressed("ui_up")) - int(Input.is_action_pressed("ui_down"))
 	
 	player.motion_target.x = input_x * player.MAX_SPEED;
+	
+	if Input.is_action_just_pressed("ui_up"):
+		player.is_jump_queued = JUMP_BUFFERING_TIME
+	else:
+		player.is_jump_queued = max(player.is_jump_queued - delta * 10.0, 0.0)
 	
 	# AIR FRICTION
 	var motionDiff: Vector2 = Vector2.ZERO - player.motion
@@ -36,6 +42,7 @@ func run(delta):
 	player.motion.x += min(abs(xDiff), AIR_ACCELERATION * delta) * sign(xDiff)
 	if player.is_on_floor():
 		player.state = player.stateGround
+		player.motion.x *= 0.8
 		player.animations.travel('Crouch')
 	else:
 		var ray: RayCast2D = rayRight if player.motion.x > 0 else rayLeft
