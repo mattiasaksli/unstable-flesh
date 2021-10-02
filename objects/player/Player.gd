@@ -4,9 +4,10 @@ const State = preload("res://scripts/State.gd")
 
 onready var stateGround: State = get_node("States/Ground");
 onready var stateAir: State = get_node("States/Air");
+onready var stateLedge: State = get_node("States/Ledge");
 
-const MAX_SPEED: float = 64.0
-const GRAVITY: float = 500.0
+const MAX_SPEED: float = 48.0
+const GRAVITY: float = 300.0
 
 const AIR_FRICTION: float = 80.0
 

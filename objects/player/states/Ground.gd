@@ -3,7 +3,7 @@ extends State
 onready var player = get_parent().get_parent()
 
 const GROUND_ACCELERATION: float = 600.0
-const JUMP_FORCE: float = 160.0
+const JUMP_FORCE: float = 110.0
 
 func run(delta):
 	var input_x: float = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
