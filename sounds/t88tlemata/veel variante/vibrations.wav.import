@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/vibrations.wav-e29ec146fe461b42082431b49c75e22b.sample"
+
+[deps]
+
+source_file="res://sounds/t88tlemata/veel variante/vibrations.wav"
+dest_files=[ "res://.import/vibrations.wav-e29ec146fe461b42082431b49c75e22b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

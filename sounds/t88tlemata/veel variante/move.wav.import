@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/move.wav-34d3c09c694eb0302bb4a74e5c170ce6.sample"
+
+[deps]
+
+source_file="res://sounds/t88tlemata/veel variante/move.wav"
+dest_files=[ "res://.import/move.wav-34d3c09c694eb0302bb4a74e5c170ce6.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ominous_short.wav-121c843b1065ad8fae8bbb6582684de9.sample"
+
+[deps]
+
+source_file="res://sounds/t88tlemata/veel variante/ominous_short.wav"
+dest_files=[ "res://.import/ominous_short.wav-121c843b1065ad8fae8bbb6582684de9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
