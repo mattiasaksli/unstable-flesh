@@ -178,7 +178,8 @@ position = Vector2( 16, 56 )
 position = Vector2( -14.1271, 52 )
 scale = Vector2( 1, 2 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
+volume_db = -5.0
 autoplay = true
 mix_target = 1
