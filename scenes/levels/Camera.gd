@@ -23,3 +23,8 @@ func _ready():
 func _process(delta):
 	position.x = player.position.x
 	position.y = player.position.y
+
+
+func _input(event : InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().quit()
