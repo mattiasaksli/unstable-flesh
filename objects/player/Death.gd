@@ -11,7 +11,6 @@ func run(delta):
 	player.motion_target.x = 0
 	
 	if !played_sound:
-		print('here')
 		deathSound.stream = preload("res://sounds/t88deldud/dealth.wav")
 		deathSound.play()
 		played_sound = true

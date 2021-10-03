@@ -18,9 +18,7 @@ func _physics_process(delta):
 	position += direction * delta
 
 	if (position.x < bounds.position.x or position.x > bounds.end.x):
-		print('bounced')
 		direction.x *= -1
 
 	if (position.y < bounds.position.y or position.y > bounds.end.y):
-		print(position.y, ' ', bounds.position.y, ' ', bounds.end.y)
 		direction.y *= -1
