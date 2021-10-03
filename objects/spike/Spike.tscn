@@ -4,7 +4,7 @@
 [ext_resource path="res://objects/spike/Spike.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 3.6873, 3.06655 )
+extents = Vector2( 3, 1.78834 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Extend"
@@ -54,7 +54,7 @@ tracks/0/keys = {
 "values": [ 1 ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=5]
 resource_name = "Retract"
 length = 0.5
 tracks/0/type = "value"
@@ -70,34 +70,34 @@ tracks/0/keys = {
 "values": [ 4, 8 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "Extend"
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeAnimation" id=15]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "Retract"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=11]
-states/Extend/node = SubResource( 5 )
+[sub_resource type="AnimationNodeStateMachine" id=12]
+states/Extend/node = SubResource( 6 )
 states/Extend/position = Vector2( 322, 157 )
-states/Idle/node = SubResource( 6 )
+states/Idle/node = SubResource( 7 )
 states/Idle/position = Vector2( 246, 53 )
-states/Retract/node = SubResource( 15 )
+states/Retract/node = SubResource( 8 )
 states/Retract/position = Vector2( 387, 64 )
-transitions = [ "Idle", "Extend", SubResource( 13 ), "Extend", "Retract", SubResource( 16 ), "Retract", "Idle", SubResource( 17 ) ]
+transitions = [ "Idle", "Extend", SubResource( 9 ), "Extend", "Retract", SubResource( 10 ), "Retract", "Idle", SubResource( 11 ) ]
 start_node = "Idle"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
 
 [node name="Spike" type="Area2D"]
 z_index = -1
@@ -109,7 +109,7 @@ texture = ExtResource( 1 )
 hframes = 9
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 0.788342 )
+position = Vector2( 0, 2 )
 shape = SubResource( 1 )
 
 [node name="Ray" type="RayCast2D" parent="."]
@@ -121,13 +121,13 @@ cast_to = Vector2( 6, 0 )
 anims/Extend = SubResource( 2 )
 anims/Idle = SubResource( 3 )
 anims/Prime = SubResource( 4 )
-anims/Retract = SubResource( 14 )
+anims/Retract = SubResource( 5 )
 
 [node name="Animation" type="AnimationTree" parent="."]
-tree_root = SubResource( 11 )
+tree_root = SubResource( 12 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 12 )
+parameters/playback = SubResource( 13 )
 
 [connection signal="body_entered" from="." to="." method="_on_Spike_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Spike_body_exited"]
