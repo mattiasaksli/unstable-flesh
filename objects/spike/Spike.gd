@@ -9,6 +9,10 @@ onready var sprite = $Sprite
 onready var collider: CollisionShape2D = $Collider
 onready var ray: RayCast2D = $Ray
 
+onready var soundPlayer : AudioStreamPlayer = $AudioPlayer as AudioStreamPlayer
+onready var primeSound = preload("res://sounds/t88deldud/spike_prime.wav")
+onready var extendSound = preload("res://sounds/t88deldud/spike_extend.wav")
+
 var target_position: Vector2
 var hidden_position: Vector2
 var is_active: bool
@@ -40,6 +44,8 @@ func _process(delta):
 		if ray.is_colliding() && !is_primed && player.state != player.stateDeath && counter < 0.0:
 			is_primed = true
 			counter = PRIME_TIME
+			soundPlayer.stream = primeSound
+			soundPlayer.play()
 		if is_primed && !is_extended:
 			speed = .01
 			target_position = Vector2.DOWN * 8.0
@@ -47,6 +53,8 @@ func _process(delta):
 				is_extended = true
 				counter = EXTENDED_TIME
 				animations.travel('Extend')
+				soundPlayer.stream = extendSound
+				soundPlayer.play()
 		if is_extended:
 			speed = .12
 			target_position = Vector2.DOWN

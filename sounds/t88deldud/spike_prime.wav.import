@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/spike_prime.wav-17cecbf6fc255b7025a40005d234e079.sample"
+
+[deps]
+
+source_file="res://sounds/t88deldud/spike_prime.wav"
+dest_files=[ "res://.import/spike_prime.wav-17cecbf6fc255b7025a40005d234e079.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
