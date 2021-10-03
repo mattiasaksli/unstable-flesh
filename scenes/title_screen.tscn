@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/title_screen.gd" type="Script" id=1]
+[ext_resource path="res://fonts/kongtext.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://sprites/logo.png" type="Texture" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 8
+use_mipmaps = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "FadeOut"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="TitleScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_left = 0.067
+anchor_top = 0.667
+anchor_right = 0.933
+anchor_bottom = 0.889
+margin_left = -0.04
+margin_top = -0.0300064
+margin_right = 0.0399933
+margin_bottom = -0.0100021
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]Press space to begin[/center]"
+text = "Press space to begin"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/FadeOut = SubResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.5
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

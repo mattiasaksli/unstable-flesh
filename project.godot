@@ -44,8 +44,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Unstable"
-run/main_scene="res://scenes/levels/main_level.tscn"
+config/name="Unstable Flesh"
+run/main_scene="res://scenes/title_screen.tscn"
 config/icon="res://icon.png"
 
 [debug]
