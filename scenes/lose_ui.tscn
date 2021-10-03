@@ -65,10 +65,11 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.3, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ -80.0, -80.0, 5.0 ]
+"values": [ -80.0, -80.0, -25.032 ]
 }
 
 [node name="UI" type="Control"]
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -111,3 +112,4 @@ autoplay = true
 
 [node name="Flesh" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+volume_db = -80.0
