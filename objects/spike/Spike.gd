@@ -68,8 +68,10 @@ func _process(delta):
 
 
 func _player_died():
-	player.state = player.stateDeath
-	($"/root/MainLevel" as GameManager).game_over()
+	if player.state != player.stateDeath:
+		player.state = player.stateDeath
+		player.motion = orientation * 60.0
+		($"/root/MainLevel" as GameManager).game_over()
 
 
 func _on_Spike_body_entered(_body):
