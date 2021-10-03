@@ -64,7 +64,7 @@ func _process(delta):
 		counter = 0
 		speed = .01
 		target_position = Vector2.DOWN * 8.0
-	sprite.position = Vector2.ZERO#+= (target_position - sprite.position) * speed * delta * 50
+	sprite.position += (target_position - sprite.position) * speed * delta * 50
 	
 func _on_Spike_body_enter(body): 
 	print('entered ', body)
