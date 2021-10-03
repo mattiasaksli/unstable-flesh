@@ -28,7 +28,8 @@ func _check_open_spaces():
 		
 		if !raycast.is_colliding():
 			free_spaces.append(raycast.cast_to.normalized())
-			
+	$Rays.queue_free()
+
 func _place_spikes():
 	for space in free_spaces:
 		var spike = spikeScene.instance()
@@ -43,7 +44,7 @@ func _place_spikes():
 func randomize_sprite():
 	sprite.frame = rng.randi_range(1, 5)
 	
-func _physics_process(delta):
+func _process(delta):
 	if !has_checked_spaces:
 		has_checked_spaces = true
 		_check_open_spaces()
@@ -56,11 +57,11 @@ func _physics_process(delta):
 	else:
 		if sprite.modulate.a < 0.01:
 			sprite.modulate.a = 0
-			set_physics_process(false)
+			set_process(false)
 
 func activate() -> void:
 	randomize_sprite()
-	set_physics_process(true)
+	set_process(true)
 	is_active = true
 	for hazard in hazards:
 		if rng.randi_range(1, 3) != 1:
