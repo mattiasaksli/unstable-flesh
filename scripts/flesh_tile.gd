@@ -6,6 +6,7 @@ export var spikeScene : PackedScene
 
 onready var sprite : Sprite = $Sprite as Sprite
 onready var rays: Array = get_node("Rays").get_children()
+onready var tilemap: TileMap = get_node("../Tilemap")
 
 var rng: RandomNumberGenerator
 var is_active: bool = false
@@ -22,6 +23,12 @@ func _ready():
 
 func _check_open_spaces():
 	free_spaces = []
+	
+	if (tilemap):
+		var rect: Rect2 = tilemap.get_used_rect()
+		if position <= rect.position * 8 or position + Vector2(8,8) > rect.end * 8:
+			$Rays.queue_free()
+			return
 	
 	for item in rays:
 		var raycast: RayCast2D = item
