@@ -1,6 +1,7 @@
 extends State
 
 onready var player = get_parent().get_parent()
+onready var jumpSound : AudioStreamPlayer = $"../../JumpSound" as AudioStreamPlayer
 
 const GROUND_ACCELERATION: float = 200.0
 const JUMP_FORCE: float = 110.0
@@ -10,6 +11,9 @@ var movement_time: float = 0.0
 func run(delta):
 	var input_x: float = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	var input_jump: bool = Input.is_action_just_pressed("ui_up")
+	
+	if input_jump:
+		_play_jump_sound()
 	
 	if input_x != 0:
 		movement_time += delta * 10
@@ -46,3 +50,10 @@ func run(delta):
 		player.is_facing_right = player.motion.x > 0
 	
 	player.motion = player.move_and_slide(player.motion, Vector2.UP)
+
+
+func _play_jump_sound() -> void:
+	if jumpSound.playing:
+		return
+	jumpSound.stream = preload("res://sounds/t88deldud/jump2.wav")
+	jumpSound.play()

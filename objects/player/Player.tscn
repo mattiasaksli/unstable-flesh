@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://sprites/player/spr_player.png" type="Texture" id=1]
 [ext_resource path="res://objects/player/states/Ground.gd" type="Script" id=2]
@@ -8,6 +8,11 @@
 [ext_resource path="res://objects/player/Backflip.gd" type="Script" id=6]
 [ext_resource path="res://objects/player/Turn.gd" type="Script" id=7]
 [ext_resource path="res://objects/player/Death.gd" type="Script" id=8]
+[ext_resource path="res://sounds/t88deldud/walk.wav" type="AudioStream" id=9]
+[ext_resource path="res://sounds/t88deldud/jump.wav" type="AudioStream" id=10]
+[ext_resource path="res://sounds/t88deldud/land.wav" type="AudioStream" id=11]
+[ext_resource path="res://sounds/t88deldud/grab.wav" type="AudioStream" id=12]
+[ext_resource path="res://sounds/t88deldud/turn2.wav" type="AudioStream" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3, 4.45333 )
@@ -27,6 +32,32 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 11, 12, 4 ]
 }
+tracks/1/type = "audio"
+tracks/1/path = NodePath("JumpSound")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 10 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("JumpSound:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -10.0, -10.0 ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "Crouch"
@@ -43,8 +74,34 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 1 ]
 }
+tracks/1/type = "audio"
+tracks/1/path = NodePath("LandSound")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 11 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("LandSound:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -15.0, -15.0 ]
+}
 
-[sub_resource type="Animation" id=37]
+[sub_resource type="Animation" id=4]
 resource_name = "Death Air"
 length = 0.1
 tracks/0/type = "value"
@@ -60,7 +117,7 @@ tracks/0/keys = {
 "values": [ 13 ]
 }
 
-[sub_resource type="Animation" id=38]
+[sub_resource type="Animation" id=5]
 resource_name = "Death Ground"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -75,7 +132,7 @@ tracks/0/keys = {
 "values": [ 14 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=6]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -90,8 +147,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Jump Down"
+[sub_resource type="Animation" id=7]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -105,8 +161,7 @@ tracks/0/keys = {
 "values": [ 4 ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "Jump Mid"
+[sub_resource type="Animation" id=8]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -120,7 +175,7 @@ tracks/0/keys = {
 "values": [ 3 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=9]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -135,8 +190,7 @@ tracks/0/keys = {
 "values": [ 2 ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "Ledge"
+[sub_resource type="Animation" id=10]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -150,8 +204,34 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 5 ]
 }
+tracks/1/type = "audio"
+tracks/1/path = NodePath("LedgeGrabSound")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 12 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("LedgeGrabSound:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -10.0, -10.0 ]
+}
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=11]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -166,9 +246,34 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 6, 9 ]
 }
+tracks/1/type = "audio"
+tracks/1/path = NodePath("WalkSound")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+} ],
+"times": PoolRealArray( 0.1 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("WalkSound:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -10.0, -10.0 ]
+}
 
-[sub_resource type="Animation" id=10]
-resource_name = "Turn"
+[sub_resource type="Animation" id=12]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -182,55 +287,71 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 10 ]
 }
-
-[sub_resource type="AnimationNodeAnimation" id=11]
-animation = "Backflip"
-
-[sub_resource type="AnimationNodeAnimation" id=12]
-animation = "Crouch"
-
-[sub_resource type="AnimationNodeAnimation" id=39]
-animation = "Death Air"
-
-[sub_resource type="AnimationNodeAnimation" id=40]
-animation = "Death Ground"
+tracks/1/type = "audio"
+tracks/1/path = NodePath("TurnSound")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 13 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("TurnSound:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -10.0, -10.0 ]
+}
 
 [sub_resource type="AnimationNodeAnimation" id=13]
-animation = "Idle"
+animation = "Backflip"
 
 [sub_resource type="AnimationNodeAnimation" id=14]
-animation = "Jump Down"
+animation = "Crouch"
 
 [sub_resource type="AnimationNodeAnimation" id=15]
-animation = "Jump Mid"
+animation = "Death Air"
 
 [sub_resource type="AnimationNodeAnimation" id=16]
-animation = "Jump Up"
+animation = "Death Ground"
 
 [sub_resource type="AnimationNodeAnimation" id=17]
-animation = "Ledge"
+animation = "Idle"
 
 [sub_resource type="AnimationNodeAnimation" id=18]
-animation = "Run"
+animation = "Jump Down"
 
 [sub_resource type="AnimationNodeAnimation" id=19]
+animation = "Jump Mid"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "Jump Up"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "Ledge"
+
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "Run"
+
+[sub_resource type="AnimationNodeAnimation" id=23]
 animation = "Turn"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=20]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=24]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=25]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=26]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=27]
 
@@ -239,52 +360,62 @@ auto_advance = true
 [sub_resource type="AnimationNodeStateMachineTransition" id=29]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=30]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=31]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=32]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=33]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=34]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=37]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=40]
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=41]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=42]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=43]
-
-[sub_resource type="AnimationNodeStateMachine" id=35]
-states/Backflip/node = SubResource( 11 )
+[sub_resource type="AnimationNodeStateMachine" id=42]
+states/Backflip/node = SubResource( 13 )
 states/Backflip/position = Vector2( 942, -82 )
-states/Crouch/node = SubResource( 12 )
+states/Crouch/node = SubResource( 14 )
 states/Crouch/position = Vector2( 947, 161 )
-"states/Death Air/node" = SubResource( 39 )
+"states/Death Air/node" = SubResource( 15 )
 "states/Death Air/position" = Vector2( 824, 330 )
-"states/Death Ground/node" = SubResource( 40 )
+"states/Death Ground/node" = SubResource( 16 )
 "states/Death Ground/position" = Vector2( 560, 265 )
-states/Idle/node = SubResource( 13 )
+states/Idle/node = SubResource( 17 )
 states/Idle/position = Vector2( 680, 161 )
-"states/Jump Down/node" = SubResource( 14 )
+"states/Jump Down/node" = SubResource( 18 )
 "states/Jump Down/position" = Vector2( 845, 18 )
-"states/Jump Mid/node" = SubResource( 15 )
+"states/Jump Mid/node" = SubResource( 19 )
 "states/Jump Mid/position" = Vector2( 662, -15 )
-"states/Jump Up/node" = SubResource( 16 )
+"states/Jump Up/node" = SubResource( 20 )
 "states/Jump Up/position" = Vector2( 680, 67 )
-states/Ledge/node = SubResource( 17 )
+states/Ledge/node = SubResource( 21 )
 states/Ledge/position = Vector2( 1042, 54 )
-states/Run/node = SubResource( 18 )
+states/Run/node = SubResource( 22 )
 states/Run/position = Vector2( 352, 134 )
-states/Turn/node = SubResource( 19 )
+states/Turn/node = SubResource( 23 )
 states/Turn/position = Vector2( 352, -82 )
-transitions = [ "Idle", "Run", SubResource( 20 ), "Run", "Idle", SubResource( 21 ), "Idle", "Jump Up", SubResource( 22 ), "Jump Up", "Jump Mid", SubResource( 23 ), "Jump Mid", "Jump Down", SubResource( 24 ), "Jump Down", "Crouch", SubResource( 25 ), "Crouch", "Idle", SubResource( 26 ), "Jump Down", "Ledge", SubResource( 27 ), "Ledge", "Jump Down", SubResource( 28 ), "Turn", "Run", SubResource( 29 ), "Run", "Turn", SubResource( 30 ), "Turn", "Backflip", SubResource( 31 ), "Backflip", "Jump Down", SubResource( 32 ), "Backflip", "Crouch", SubResource( 33 ), "Backflip", "Ledge", SubResource( 34 ), "Death Air", "Death Ground", SubResource( 41 ), "Crouch", "Death Air", SubResource( 42 ), "Idle", "Death Air", SubResource( 43 ) ]
+transitions = [ "Idle", "Run", SubResource( 24 ), "Run", "Idle", SubResource( 25 ), "Idle", "Jump Up", SubResource( 26 ), "Jump Up", "Jump Mid", SubResource( 27 ), "Jump Mid", "Jump Down", SubResource( 28 ), "Jump Down", "Crouch", SubResource( 29 ), "Crouch", "Idle", SubResource( 30 ), "Jump Down", "Ledge", SubResource( 31 ), "Ledge", "Jump Down", SubResource( 32 ), "Turn", "Run", SubResource( 33 ), "Run", "Turn", SubResource( 34 ), "Turn", "Backflip", SubResource( 35 ), "Backflip", "Jump Down", SubResource( 36 ), "Backflip", "Crouch", SubResource( 37 ), "Backflip", "Ledge", SubResource( 38 ), "Death Air", "Death Ground", SubResource( 39 ), "Crouch", "Death Air", SubResource( 40 ), "Idle", "Death Air", SubResource( 41 ) ]
 start_node = "Idle"
 end_node = "Death Ground"
 graph_offset = Vector2( 287, -50 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=36]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=43]
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 4 )
@@ -337,18 +468,38 @@ script = ExtResource( 8 )
 method_call_mode = 1
 anims/Backflip = SubResource( 2 )
 anims/Crouch = SubResource( 3 )
-"anims/Death Air" = SubResource( 37 )
-"anims/Death Ground" = SubResource( 38 )
-anims/Idle = SubResource( 4 )
-"anims/Jump Down" = SubResource( 5 )
-"anims/Jump Mid" = SubResource( 6 )
-"anims/Jump Up" = SubResource( 7 )
-anims/Ledge = SubResource( 8 )
-anims/Run = SubResource( 9 )
-anims/Turn = SubResource( 10 )
+"anims/Death Air" = SubResource( 4 )
+"anims/Death Ground" = SubResource( 5 )
+anims/Idle = SubResource( 6 )
+"anims/Jump Down" = SubResource( 7 )
+"anims/Jump Mid" = SubResource( 8 )
+"anims/Jump Up" = SubResource( 9 )
+anims/Ledge = SubResource( 10 )
+anims/Run = SubResource( 11 )
+anims/Turn = SubResource( 12 )
 
 [node name="Animation" type="AnimationTree" parent="."]
-tree_root = SubResource( 35 )
+tree_root = SubResource( 42 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 36 )
+parameters/playback = SubResource( 43 )
+
+[node name="WalkSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -10.0
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -10.0
+
+[node name="LandSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -15.0
+
+[node name="LedgeGrabSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -10.0
+
+[node name="TurnSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = -10.0
