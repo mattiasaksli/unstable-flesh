@@ -1,7 +1,8 @@
 extends Area2D
 
-const PRIME_TIME: float = 4.0
-const EXTENDED_TIME: float = 8.0
+const READY_WAIT_TIME: float = 4.0
+const PRIME_TIME: float = 5.0
+const EXTENDED_TIME: float = 5.0
 
 onready var player = get_tree().root.get_child(0).get_node('Player')
 onready var sprite = $Sprite
@@ -35,11 +36,11 @@ func _process(delta):
 	if is_active:
 		speed = .1
 		target_position = Vector2.ZERO
-		if ray.is_colliding() && !is_primed && player.state != player.stateDeath:
+		counter -= delta * 10.0
+		if ray.is_colliding() && !is_primed && player.state != player.stateDeath && counter < 0.0:
 			is_primed = true
 			counter = PRIME_TIME
-		if is_primed:
-			counter -= delta * 10
+		if is_primed && !is_extended:
 			speed = .01
 			target_position = Vector2.DOWN * 8.0
 			if counter < 0:
@@ -47,7 +48,6 @@ func _process(delta):
 				counter = EXTENDED_TIME
 				animations.travel('Extend')
 		if is_extended:
-			counter -= delta * 10
 			speed = .12
 			target_position = Vector2.DOWN
 			if is_player:
@@ -64,7 +64,7 @@ func _process(delta):
 		counter = 0
 		speed = .01
 		target_position = Vector2.DOWN * 8.0
-	sprite.position += (target_position - sprite.position) * speed
+	sprite.position += (target_position - sprite.position) * speed * delta * 80.0
 
 
 func _player_died():

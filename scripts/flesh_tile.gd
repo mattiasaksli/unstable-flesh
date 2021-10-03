@@ -6,6 +6,7 @@ export var spikeScene : PackedScene
 
 onready var sprite : Sprite = $Sprite as Sprite
 onready var rays: Array = get_node("Rays").get_children()
+onready var tilemap: TileMap = get_node("../Tilemap")
 
 var rng: RandomNumberGenerator
 var is_active: bool = false
@@ -23,12 +24,19 @@ func _ready():
 func _check_open_spaces():
 	free_spaces = []
 	
+	if (tilemap):
+		var rect: Rect2 = tilemap.get_used_rect()
+		if position <= rect.position * 8 or position + Vector2(8,8) > rect.end * 8:
+			$Rays.queue_free()
+			return
+	
 	for item in rays:
 		var raycast: RayCast2D = item
 		
 		if !raycast.is_colliding():
 			free_spaces.append(raycast.cast_to.normalized())
-			
+	$Rays.queue_free()
+
 func _place_spikes():
 	for space in free_spaces:
 		var spike = spikeScene.instance()
@@ -43,7 +51,7 @@ func _place_spikes():
 func randomize_sprite():
 	sprite.frame = rng.randi_range(1, 5)
 	
-func _physics_process(delta):
+func _process(delta):
 	if !has_checked_spaces:
 		has_checked_spaces = true
 		_check_open_spaces()
@@ -56,15 +64,17 @@ func _physics_process(delta):
 	else:
 		if sprite.modulate.a < 0.01:
 			sprite.modulate.a = 0
-			set_physics_process(false)
+			set_process(false)
 
 func activate() -> void:
-	randomize_sprite()
-	set_physics_process(true)
-	is_active = true
-	for hazard in hazards:
-		if rng.randi_range(1, 3) != 1:
-			hazard.is_active = true
+	if !is_active:
+		randomize_sprite()
+		set_process(true)
+		is_active = true
+		for hazard in hazards:
+			if rng.randi_range(1, 3) != 1:
+				hazard.is_active = true
+				hazard.counter = hazard.READY_WAIT_TIME
 
 func deactivate() -> void:
 	is_active = false

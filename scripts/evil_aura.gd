@@ -13,11 +13,6 @@ func _ready():
 	self.connect("activate_flesh_tile", flesh_manager, "on_activate_flesh_tile")
 	self.connect("deactivate_flesh_tile", flesh_manager, "on_deactivate_flesh_tile")
 
-
-func _process(delta):
-	time += delta
-	position.x = centerX + sin(deg2rad(time * 50)) * 32.0
-
 func _on_tile_entered_aura(flesh_tile : Node2D) -> void:
 	emit_signal("activate_flesh_tile", flesh_tile.position)
 
