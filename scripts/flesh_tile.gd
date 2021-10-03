@@ -67,12 +67,14 @@ func _process(delta):
 			set_process(false)
 
 func activate() -> void:
-	randomize_sprite()
-	set_process(true)
-	is_active = true
-	for hazard in hazards:
-		if rng.randi_range(1, 3) != 1:
-			hazard.is_active = true
+	if !is_active:
+		randomize_sprite()
+		set_process(true)
+		is_active = true
+		for hazard in hazards:
+			if rng.randi_range(1, 3) != 1:
+				hazard.is_active = true
+				hazard.counter = hazard.READY_WAIT_TIME
 
 func deactivate() -> void:
 	is_active = false
