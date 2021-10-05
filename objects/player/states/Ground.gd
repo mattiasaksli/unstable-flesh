@@ -44,7 +44,7 @@ func run(delta):
 	
 	player.animations.travel('Idle' if player.motion.x == 0 else 'Run')
 	player.is_facing_right = player.is_facing_right if input_x == 0 else (input_x > 0)
-	if abs(player.motion.x) * 1.8 > player.MAX_SPEED && sign(player.motion.x) != sign(player.motion_target.x) && movement_time > 3.0 && input_x != 0:
+	if abs(player.motion.x) * 1.8 > player.MAX_SPEED && sign(player.motion.x) != sign(player.motion_target.x) && movement_time > 1.5 && input_x != 0:
 		movement_time = 0
 		player.state = player.stateTurn
 		player.is_facing_right = player.motion.x > 0
