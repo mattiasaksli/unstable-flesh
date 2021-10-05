@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/ui_animation_player.gd" type="Script" id=1]
 [ext_resource path="res://fonts/kongtext.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://sounds/t88deldud/snd_scene_end.wav" type="AudioStream" id=3]
+[ext_resource path="res://scripts/win_time.gd" type="Script" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
@@ -12,6 +13,11 @@ size = 8
 use_mipmaps = true
 extra_spacing_top = 1
 extra_spacing_char = 1
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 6
+use_mipmaps = true
 font_data = ExtResource( 2 )
 
 [sub_resource type="Animation" id=3]
@@ -29,13 +35,25 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Panel/RichTextLabel:modulate")
+tracks/1/path = NodePath("Panel/Text:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 1.5, 2.5, 5, 6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Panel/Time:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 2.5, 3, 5, 6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -57,20 +75,33 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
-modulate = Color( 1, 1, 1, 0.1 )
-anchor_left = 0.042
+[node name="Text" type="RichTextLabel" parent="Panel"]
+modulate = Color( 1, 1, 1, 0 )
 anchor_top = 0.089
-anchor_right = 0.958
-anchor_bottom = 0.889
-margin_left = -0.0400004
+anchor_right = 1.0
+anchor_bottom = 0.689
 margin_top = -0.0100002
-margin_right = 0.0399933
 margin_bottom = -0.0100021
 custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[center]Your flesh is still yours, at least for today[/center]"
 text = "Your flesh is still yours, at least for today"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Time" type="Label" parent="Panel"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_top = 0.789
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -0.0100021
+custom_fonts/font = SubResource( 4 )
+text = "Time: 00:00.000"
+align = 1
+valign = 1
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
