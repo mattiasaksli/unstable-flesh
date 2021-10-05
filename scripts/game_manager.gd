@@ -32,4 +32,9 @@ func game_over() -> void:
 
 
 func win_game() -> void:
+	_save_elapsed_time()
 	get_tree().change_scene_to(win_scene)
+
+
+func _save_elapsed_time() -> void:
+	$"/root/TimeHolder".time = $Camera/Camera2D/CanvasLayer/UI/Time.get_formatted_time()
