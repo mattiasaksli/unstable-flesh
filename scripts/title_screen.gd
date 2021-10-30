@@ -1,7 +1,7 @@
 extends Control
 
 
-const main_level : PackedScene = preload("res://scenes/levels/main_level.tscn")
+const main_level : PackedScene = preload("res://scenes/levels/root_level.tscn")
 
 onready var animation_player : AnimationPlayer = $AnimationPlayer as AnimationPlayer
 

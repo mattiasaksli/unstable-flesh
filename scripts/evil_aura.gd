@@ -3,7 +3,7 @@ extends Area2D
 signal activate_flesh_tile(world_pos)
 signal deactivate_flesh_tile(world_pos)
 
-onready var flesh_manager : FleshManager = $"/root/MainLevel/Tilemap" as FleshManager
+onready var flesh_manager : FleshManager = $"/root/Level/MainLevel/Tilemap" as FleshManager
 
 var centerX: float = 0.0
 var time: float = 0.0

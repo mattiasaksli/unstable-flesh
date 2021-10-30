@@ -21,7 +21,7 @@ func _instance_new_flesh_tile(pos : Vector2) -> void:
 	flesh_to_world_pos_dict[pos] = new_flesh_tile
 	new_flesh_tile.deactivate()
 	
-	$"/root/MainLevel".call_deferred("add_child", new_flesh_tile)
+	$"/root/Level/MainLevel".call_deferred("add_child", new_flesh_tile)
 
 
 func on_activate_flesh_tile(world_pos : Vector2) -> void:

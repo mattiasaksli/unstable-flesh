@@ -9,7 +9,7 @@ var is_picked: bool = false
 var time: float = 0.0
 
 func _enter_tree():
-	_game_manager = $"/root/MainLevel" as GameManager
+	_game_manager = $"/root/Level/MainLevel" as GameManager
 	
 func _process(delta):
 	time += delta * 5.0

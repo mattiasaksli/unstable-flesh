@@ -4,7 +4,7 @@ const READY_WAIT_TIME: float = 4.0
 const PRIME_TIME: float = 5.0
 const EXTENDED_TIME: float = 5.0
 
-onready var player = $"/root/MainLevel/Player"
+onready var player = $"/root/Level/MainLevel/Player"
 onready var sprite = $Sprite
 onready var collider: CollisionShape2D = $Collider
 onready var ray: RayCast2D = $Ray
@@ -79,7 +79,7 @@ func _player_died():
 	if player.state != player.stateDeath:
 		player.state = player.stateDeath
 		player.motion = orientation * 60.0
-		($"/root/MainLevel" as GameManager).game_over()
+		($"/root/Level/MainLevel" as GameManager).game_over()
 
 
 func _on_Spike_body_entered(_body):
